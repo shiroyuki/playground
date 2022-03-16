@@ -6,6 +6,8 @@ This is a simple implementation of a microblog server.
 >
 > It is **NOT** designed for production uses as there is no security consideration or implementation involved.
 
+This code is released under BSD license.
+
 ## Requirements
 
 | Software | Minimum Version | Tested Version | Note                    |
@@ -44,3 +46,9 @@ CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci
 ```
 
 > This process can be simplified by just running `python3 -m microblog.setup --create-db`.
+ 
+## How to run this app
+
+```shell
+FLASK_APP=microblog.web FLASK_ENV=development flask run
+```
