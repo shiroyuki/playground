@@ -41,12 +41,12 @@ class MessageService:
             rows = [r for r in conn.execute(text('SELECT * FROM messages WHERE id = :id'), [{'id': id}])]
         if not rows:
             raise UnknownMessageError(id)
-        return rows[0]
+        return Message(**rows[0])
 
     def get_recent(self) -> List[Message]:
         with self.__engine.connect() as conn:
             # language=sql
-            rows = [r for r in conn.execute(text('SELECT * FROM messages ORDER BY created_at DESC'))]
+            rows = [Message(**r) for r in conn.execute(text('SELECT * FROM messages ORDER BY created_at DESC'))]
         return rows
 
     # noinspection PyShadowingBuiltins
