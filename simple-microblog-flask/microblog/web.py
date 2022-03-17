@@ -35,7 +35,7 @@ def respond_error(status: int, throwable: Exception):
 @app.route('/api/messages/', methods=['GET', 'POST'])
 def api_messages():
     if request.method == 'GET':
-        return respond_error(503, NotImplementedError())
+        return respond(200, [m.dict() for m in message_service.get_recent()])
     elif request.method == 'POST':
         inbound_message = request.json()
         message = Message(**inbound_message)
